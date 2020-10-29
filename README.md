@@ -33,12 +33,14 @@ else return(fibonacci(n-1)+fibonacci(n-2));
 `    int *array = new int[a]; `
     
 //链式存储代码定义：
-(```) typedef struct Lnode
+``` 
+typedef struct Lnode
   {Elemtype data;
    struct Lnode *next
   }Lnode;
   p = (Lnode*)malloc(sizeof(Lnode));//动态内存分配
-  free(p);//释放内存 (```)
+  free(p);//释放内存 
+  ```
   
 同时，与c语言中malloc和free这一组操作对应的，在c++中有new和delete
 在此指出new和malloc的区别，这也是一道非常经典的面试题：
@@ -60,11 +62,13 @@ else return(fibonacci(n-1)+fibonacci(n-2));
 查询（修改）|   O(1)   |   O(n)
 插入（删除）|   O(n)   |   O(n)
   
-##c++语法创建不规则二维数组##
-(```)int numberofRows = 5;
+##c++语法创建不规则二维数组
+```
+int numberofRows = 5;
 int length[5]={6,3,4,2,7};
 int **irregularArray = new int* [numberofRows]
 ;
 
 for(int i=0; i<numberofRows; i++)
-   irregularArray[i] = new int [length[i]];(```)
+   irregularArray[i] = new int [length[i]];
+```
