@@ -60,4 +60,11 @@ else return(fibonacci(n-1)+fibonacci(n-2));
 查询（修改）|   O(1)   |   O(n)
 插入（删除）|   O(n)   |   O(n)
   
+##c++语法创建不规则二维数组##
+(```)int numberofRows = 5;
+int length[5]={6,3,4,2,7};
+int **irregularArray = new int* [numberofRows]
+;
 
+for(int i=0; i<numberofRows; i++)
+   irregularArray[i] = new int [length[i]];(```)
