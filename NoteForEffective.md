@@ -1,4 +1,4 @@
-#阅读笔记 of effective C++
+#阅读笔记 of effective C++     
 ###条款1     
 Cplusplus should be treated as a multiparadigm programming language. We need to accept the concept that Cplusplus is composed of 4 sublanguanges,   
 including *C language, Object-Oriented C++, Template C++, STL*.  
