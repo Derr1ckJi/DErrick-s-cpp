@@ -42,3 +42,6 @@ C++不喜欢析构函数吐出异常。如果需要对某个操作函数运行�
 
 ### 条款9
 *"Never call virtual functions during construction or destruction."*
+
+### 条款10
+*"Have assignment operators return a reference to *this."*
