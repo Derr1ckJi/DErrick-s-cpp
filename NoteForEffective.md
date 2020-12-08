@@ -41,7 +41,20 @@ Sometimes由程序员所编写的空class并不是看上去的那样一个空类
 C++不喜欢析构函数吐出异常。如果需要对某个操作函数运行期间抛出的一场作出反应，那么class应该提供一个普通函数（而非在析构函数中）执行该操作。
 
 ### 条款9
-*"Never call virtual functions during construction or destruction."*
+*"Never call virtual functions during construction or destruction."*  
+原因在于derived class对象内的base class成分会在derived class自身成分之前被构造妥当。而此处的base class如果其构造函数是一个virtual，则该virtual函数绝不会下降到derived阶层，且此时derived class的成员变量尚未初始化，这样必然导致问题。同理，析构函数也是如此。
 
 ### 条款10
-*"Have assignment operators return a reference to *this."*
+*"Have assignment operators return a reference to *this."*  
+遵循赋值操作的协议，在重定义操作符时令其返回一个reference指向操作符的左侧。  
+
+### 条款11(反复阅读）
+*"Handle assignment to self in operator="*
+- 确保当对象自我赋值时operator=有良好的行为。其中技术包括比较来元对象和目标对象的地址、语句顺序细节、以及copy-and-swap.  
+- 这个条款主要针对可能出现的对象被赋值给自己的现象，在自行管理资源的时候，可能会掉入在停止资源之前意外释放了它的陷阱。  
+- 除以上之外，还要注意自我赋值操作的意外安全性，也就是说new操作导致的异常（可能是由于分配时内存不足或copy构造函数抛出异常），最直接的解决方案就是注意在赋值所给指针指向的对象之前别删除该指针。  
+
+### 条款12
+*"Copy all parts of an object."*  
+如果你为class函数添加一个成员变量，你必须同时修改其copying函数，否则复制操作会漏掉新加入的成员变量。  
+更重要的问题会出现在derived class身上，要谨记任何时候你只要承担起“为derived class撰写copying函数”的责任，必须很小心地复制其base class部分。如果这些部分是private类型的，无法直接访问，那么你就应当调用相应的base class函数。
