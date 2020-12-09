@@ -58,3 +58,15 @@ C++不喜欢析构函数吐出异常。如果需要对某个操作函数运行�
 *"Copy all parts of an object."*  
 如果你为class函数添加一个成员变量，你必须同时修改其copying函数，否则复制操作会漏掉新加入的成员变量。  
 更重要的问题会出现在derived class身上，要谨记任何时候你只要承担起“为derived class撰写copying函数”的责任，必须很小心地复制其base class部分。如果这些部分是private类型的，无法直接访问，那么你就应当调用相应的base class函数。
+
+### 条款13(反复阅读）
+*"Use objects to manage resource."*  
+将资源放入对象内，我们可以依赖C++的析构函数自动调用机制，确保资源的释放。
+- 为防止资源泄露，请使用RAII对象，它们在构造函数中获得资源并在析构函数中释放资源。  
+- 两个常被使用的RAII classes分别是tr1：：shared_ptr&auto_ptr，前者通常是更好的选择，因为其copy行为比较直观。若选择auto_ptr，复制动作会使被复制者指向null。  
+ps.RAII----Resource Acquisition is Initialization.资源取得时机即是初始化时机。
+
+### 条款14 
+*"Think carefully about copying behavior in resource-managing classes."*  
+当RAII对象被复制时，必须一并复制它所管理的资源，所以资源的copying行为决定RAII对象的copying行为。  
+深入一层，当面临RAII对象被复制时，一般有以下两种做法：1.禁止复制；2.对底层资源使用引用计数法(shared_ptr提供“删除器”机制)。
