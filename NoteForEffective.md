@@ -64,9 +64,19 @@ C++不喜欢析构函数吐出异常。如果需要对某个操作函数运行�
 将资源放入对象内，我们可以依赖C++的析构函数自动调用机制，确保资源的释放。
 - 为防止资源泄露，请使用RAII对象，它们在构造函数中获得资源并在析构函数中释放资源。  
 - 两个常被使用的RAII classes分别是tr1：：shared_ptr&auto_ptr，前者通常是更好的选择，因为其copy行为比较直观。若选择auto_ptr，复制动作会使被复制者指向null。  
-ps.RAII----Resource Acquisition is Initialization.资源取得时机即是初始化时机。
+ps.RAII----Resource Acquisition is Initialization.资源取得时机即是初始化时机。  
+此处对两种指针做详细介绍：
+#### auto_ptr
+“类指针(pointer-like)对象”，所谓的“智能指针”，智能之处在于其析构函数自动对其所指的对象调用delete。其操作原则为：**获得资源后立即放入管理对象，一旦对象被销毁，资源也会立即被释放**，这也被称为**RAII守则**。需要注意的是，由于auto_ptr的机制，一定不能让多个auto_ptr同时指向同一个对象，否则该对象会被多次删除，导致未定义行为。为了预防这个问题，anto_ptr具备一个特殊性质，当其被复制或者值传递时，被复制者会编程null，而复制所得的指针会指向原目标对象。
+#### shared_ptr
+该指针属于引用计数型智慧指针RCSP(reference-counting smart pointer)，能够追踪同时有多少对象指向某个资源，并在无人指向资源时自动删除该资源。  
+同时auto_ptr和shared_ptr都在其析构函数内做delete而不是delete[]，所以动态分配所得的array并不能使用这两种指针进行释放空间资源。
 
 ### 条款14 
 *"Think carefully about copying behavior in resource-managing classes."*  
 当RAII对象被复制时，必须一并复制它所管理的资源，所以资源的copying行为决定RAII对象的copying行为。  
 深入一层，当面临RAII对象被复制时，一般有以下两种做法：1.禁止复制；2.对底层资源使用引用计数法(shared_ptr提供“删除器”机制)。
+
+### 条款15 
+*"Provide access to raw resources in resource-managing classes."*  
+API通常要求直接访问原始资源作为参数，而使用如auto_ptr以及shared_ptr等指针作为参数是无法通过编译的，所以每一个RAII class应该提供一个取得其所管理的原始资源的方法。对原始资源的访问可以经由显式转换或隐式转换，一般而言显式转换更安全，隐式转换更方便，但也可能增加错误发生机会。  
