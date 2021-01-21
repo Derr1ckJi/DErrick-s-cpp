@@ -86,14 +86,14 @@ API通常要求直接访问原始资源作为参数，而使用如auto_ptr以及
 
 
 ### 条款16
-*"Use the same form in corresponding uses of new and delete."*
+*"Use the same form in corresponding uses of new and delete."*        
 如果你在new表达式中使用了[]来创建一个数组空间，必须在相应的delete表达式中也使用[]，vise versa.  
 此外，最好尽量不要对数组形式做typedefs动作。
 
 ### 条款17
-*"Stored news obhjects in smart pointers in standalone statements."*
+*"Stored news obhjects in smart pointers in standalone statements."*         
 以独立语句将newed对象存储于智能指针内，如果不这样做，一旦异常被抛出，有可能导致难以察觉的资料泄露。
 
 ### 条款18
-*"Make interfaces easy to use correctly and hard  to use incorrectly."* 
+*"Make interfaces easy to use correctly and hard  to use incorrectly."*           
 为防止接口被传入错误参数，有时可以考虑导入新类型。
