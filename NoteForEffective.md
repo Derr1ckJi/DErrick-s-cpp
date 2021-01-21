@@ -97,3 +97,12 @@ API通常要求直接访问原始资源作为参数，而使用如auto_ptr以及
 ### 条款18
 *"Make interfaces easy to use correctly and hard  to use incorrectly."*           
 为防止接口被传入错误参数，有时可以考虑导入新类型。
+
+### 条款19
+*"Treat class design as type design."*     
+设计优秀的classes是一项艰巨的工作，需要考虑以下列出的诸多问题：创建和销毁、对象的初始化和赋值、pass-by-value的可行性、操作符和函数、继承等等。
+
+### 条款20  
+*"Prefer pass-by-reference-to-const to pass-by-value."*   
+继承自C语言，缺省情况下C++以by value方式传递对象至函数。在这个传递过程中，会产生一个实参的副本作为初值，调用端获得的即使这个副本，这些副本的创建和销毁就会调用对象的构造和析构函数，所以当以值传递的形式调用自定义类型时，或许自定义对象中有很多个成员变量，此时会增加很多无意义的运行内存开销。而pass-by-reference属于更为高效的传递方式，避免了不必要的程序开销，也可以避免对象切割问题。需要注意的是，对于内置类型以及STL的迭代器和函数对象，pass-by-value往往更加恰当。
+
