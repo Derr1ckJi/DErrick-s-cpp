@@ -105,4 +105,13 @@ API通常要求直接访问原始资源作为参数，而使用如auto_ptr以及
 ### 条款20  
 *"Prefer pass-by-reference-to-const to pass-by-value."*   
 继承自C语言，缺省情况下C++以by value方式传递对象至函数。在这个传递过程中，会产生一个实参的副本作为初值，调用端获得的即使这个副本，这些副本的创建和销毁就会调用对象的构造和析构函数，所以当以值传递的形式调用自定义类型时，或许自定义对象中有很多个成员变量，此时会增加很多无意义的运行内存开销。而pass-by-reference属于更为高效的传递方式，避免了不必要的程序开销，也可以避免对象切割问题。需要注意的是，对于内置类型以及STL的迭代器和函数对象，pass-by-value往往更加恰当。
+   
+### 条款21     
+*"Don't try to return a reference when you must return an object."*    
+As the foregoing case goes, 作为程序员要学会判断什么时候能够返回引用而什么时候只能返回value，在函数中我们经常会遇到返回一个被计算得到的临时变量，此时如果我们一旦返回其引用，那么该返回值其实是一个已经被销毁的对象，而这样的程序是一定会出问题的。   
+所以绝对不要返回pointer或reference指向一个local stack对象，或返回reference指向一个heap-allocated对象，或返回pointer或reference指向一个local static对象而有可能同时需要多个这一的对象。
 
+### 条款22   
+*"Declare data members private."*   
+切记将成员变量声明为private。这可赋予客户访问数据的一致性、可细微划分访问控制、允诺约束条件获得保证，并提供class作者以充分的实现弹性。  
+此外，protected不比public更具封装性。
