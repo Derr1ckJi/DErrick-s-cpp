@@ -120,5 +120,14 @@ As the foregoing case goes, 作为程序员要学会判断什么时候能够返�
 > --A:成员变量的封装性与成员变量的内容改变时所破坏的代码数量成反比。
 
 ### 条款23  
-*"Prefer non-member non-friend functions to member functions."*  
+*"Prefer non-member non-friend functions to member functions."*   
+相对于member函数，non-member函数具有更好的封装性，较为自然的做法是将这个non-member函数与相关的class置于同一个namespace内。
+
+### 条款24  
+*"Declare non-member functions when type conversions should apply to all parameters."*  
+如果需要为某一个函数的所有参数（包括被this指针所指的那个隐喻参数）进行类型转换，那么该函数必须是个non-member。正如本条款中所举的例子，常见于各种双目运算符重载中。
+
+### 条款25
+*"Consider support for a non-throwing swap."*   
+
 
