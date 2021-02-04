@@ -130,4 +130,16 @@ As the foregoing case goes, 作为程序员要学会判断什么时候能够返�
 ### 条款25
 *"Consider support for a non-throwing swap."*   
 
+### 条款26  
+*"Postpone variable definitions as long as possible."*   
+该条款的最终目的还是提高效率节约资源，为了减少定义赘余变量占用多余空间（即避免赘余的构造和析构行为），甚至避免无意义的default构造行为。每一次都以“具有明显意义的初值”来初始化变量。
+
+### 条款27   
+*"Minimize casting."*  
+c++提供四种新式转型：（相对于C风格的旧式转型具有优越性）
+- const_cast通常用于将对象的常量性转除(cast away the constness)，也是唯一有此能力的转型操作符。
+- dynamic_cast主要有用于执行安全向下转型(safe downcasting),也就是用来决定某对象是否归属继承体系中的某个类型，对程序效率造成严重拖累，应当尽量避免。
+- reinterpret_cast是指低级转型，实际动作取决于编译器，且不可移植。
+- static_cast用来强迫隐式转换，例如将int转为double，它可以将non-const转为const，但无法将const转为non-const。  
+**如果可以，尽量避免转型，特别是在注重效率的代码中避免dynamic_cast，尽量使用无需转型的替代设计完成转型动作。**  
 
