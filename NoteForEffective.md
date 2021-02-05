@@ -144,7 +144,7 @@ c++提供四种新式转型：（相对于C风格的旧式转型具有优越性�
 **如果可以，尽量避免转型，特别是在注重效率的代码中避免dynamic_cast，尽量使用无需转型的替代设计完成转型动作。**  
 
 ### 条款28  
-*"Avoid returning "handles" to object internals."*
+*"Avoid returning "handles" to object internals."*       
 handles指“号码牌”，用来取得某个对象，例如指针、引用、迭代器都属于handles，若函数返回一个代表内部数据的handle，随之而来的就是降低对象封装性的风险。    
 此外，返回自定义类型的内部对象的handles也可能会造成dangling handles，也就是说handels所指向的东西不存在，也会造成意料之外的bug。
 
