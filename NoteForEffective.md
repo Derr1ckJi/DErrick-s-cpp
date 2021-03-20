@@ -207,4 +207,5 @@ inline申请可以隐喻提出，也可以明确提出。隐喻提出的方法�
 
 ### 条款38 
 *"Model "has-a" or "is-implemented-in-terms-of" through composition."*  
-
+复合（composition）的意义与public继承完全不同；  
+在应用域，复合意味着has-a；而在实现域，复合意味着is-implemented-in-terms-of（根据某物实现出）。
