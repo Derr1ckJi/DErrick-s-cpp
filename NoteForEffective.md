@@ -198,3 +198,13 @@ inline申请可以隐喻提出，也可以明确提出。隐喻提出的方法�
 ### 条款36
 *"Never redefine an inherited non-virtual function."*  
 如果衍生类重新定义基类中的non-virtual函数，你的设计便出现了逻辑上的矛盾。根据条款32，继承就是is-a，而non-virtual函数是所有该类都有的不变性函数，如果妄图改变这一标准特性，衍生类在逻辑上就不一定真的是该类的衍生类了。
+
+### 条款37 
+*"Never redefine a function's inherited default paramater value."*  
+当衍生类继承一个带有缺省参数值的virtual函数时，不要重新定义该缺省参数。原因在于virtual函数的实现使用的是动态绑定手法，而缺省参数值却是静态绑定。
+*静态类型就是它在程序中被声明时所采用的类型，而动态类型指的是目前所指对象的类型，动态类型可以在程序执行过程中改变。*
+如果一定要在衍生类的继承的virtual函数中重定义缺省参数，你会发现这是没有任何作用的。可以参考条款35，使用NVI手法替代virtual函数。  
+
+### 条款38 
+*"Model "has-a" or "is-implemented-in-terms-of" through composition."*  
+
