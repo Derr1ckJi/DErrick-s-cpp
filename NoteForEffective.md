@@ -218,3 +218,9 @@ inline申请可以隐喻提出，也可以明确提出。隐喻提出的方法�
 
 - private继承意味着is-implemented-in-terms-of（根据某物实现出）。它通常比复合（composition）的级别低，但是当derived class需要访问protected base class的成员，或需要重新定义继承而来的virtual函数时，这么设计是合理的；
 - 与复合（composition）不同，private继承可以造成empty base最优化，这对致力于“对象尺寸最小化”的程序库开发者而言，可能很重要。
+
+### 条款40 
+*"Use multiple inheritance judiciously."*  
+多重继承比单一继承复杂，它可能导致新的歧义性，以及对virtual继承的需要。  
+但virtual继承会增加大小、速度、初始化复杂度等成本，如果virtual base classes不带任何数据，将是最具实用价值的情况。  
+多重继承的正当用途典型：public继承某个interface class且private继承某个协助实现的class。
