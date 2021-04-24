@@ -224,3 +224,13 @@ inline申请可以隐喻提出，也可以明确提出。隐喻提出的方法�
 多重继承比单一继承复杂，它可能导致新的歧义性，以及对virtual继承的需要。  
 但virtual继承会增加大小、速度、初始化复杂度等成本，如果virtual base classes不带任何数据，将是最具实用价值的情况。  
 多重继承的正当用途典型：public继承某个interface class且private继承某个协助实现的class。
+
+### 条款41
+*"Understand implicit interfaces and compile-time polymorphism."*  
+Templates及泛型编程（generic prigramming）的世界，与面向对象有根本上的不同，在此世界中显式接口和运行期多态仍然存在，但重要性降低。  
+对template而言，接口是隐式的，基于有效表达式，多态则是通过template具现化和函数重载解析发生于编译期。
+
+### 条款42
+*"Understand the two meanings of typename."*  
+- 声明typename参数时，前缀关键字class和typename可互换，建议使用typename；
+- 请使用关键字typename标识嵌套从属类型名称。
