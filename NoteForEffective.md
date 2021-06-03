@@ -19,7 +19,8 @@ Differentiate between pointer of a const data & const pointer of a data.
 ### 条款4  
 *"Make sure that objects are initialized before they're used."*   
 - 为内置型对象进行手动初始化；  
-- 构造函数最好使用成员初值列(member initialization list)， 且初值列列出的成员变量，其排列次序应当和class中的声明次序相同；    
+- 构造函数最好使用成员初值列(member initialization list)， 且初值列列出的成员变量，其排列次序应当和class中的声明次序相同；（原因是如果不适用成员初值列，编译器会自动调用默认的构造函数为成员变量赋值，这一资源消耗是完全浪费掉的）   
+- 此外，如果成员是const或者references,就一定需要初值，而不能被赋值；  
 - 尽量以local static对象代替non-local static对象，合理安排系统中各个互相影响的类的初始化顺序。
 
 ### 条款5
