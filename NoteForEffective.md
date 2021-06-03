@@ -12,7 +12,7 @@ Cplusplus should be treated as a multiparadigm programming language. We need to 
 
 ### 条款3
 *"Use const whenever possible."*  
-!区分指针常量和常量指针以及指向数值常量的指针常量。  
+!区分指针常量和常量指针以及指向数值常量的指针常量。（这里区分的标准是星号与const关键字的相对位置）  
 用中文说上面这段话过于拗口，所以  
 Differentiate between pointer of a const data & const pointer of a data.  
 
