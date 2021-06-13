@@ -2,7 +2,7 @@
 
 //2020.7.11 start from a emulator development project.
 
-//以此readme文件作为一个琐碎的笔记本 <br>
+//以此readme文件作为一个琐碎的笔记本和markdown语法的练习测试草稿 <br>
 //2020.9.28  
 
 # 《关于程序的时间复杂度》
